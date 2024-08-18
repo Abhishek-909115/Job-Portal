@@ -58,11 +58,9 @@ export const logout = catchAsyncError(async (req, res, next) => {
   httpOnly: true,
   secure: process.env.NODE_ENV === 'production', // Ensure cookies are only sent over HTTPS in production
   sameSite: 'None', // Allows cross-origin requests
+         expires: new Date(Date.now())
 });
-
-      sameSite:"none",
-      expires: new Date(Date.now()),
-    })
+ })
     .json({
       success: true,
       message: "Logged Out Successfully.",
