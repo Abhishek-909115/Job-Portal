@@ -25,6 +25,12 @@ dotenv.config({path:"./config/config.env"});
 
 //   next();
 // });
+res.cookie('token', token, {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === 'production', // Ensure cookies are only sent over HTTPS in production
+  sameSite: 'None', // Allow cross-origin requests
+});
+
 
 app.use(
     cors({
