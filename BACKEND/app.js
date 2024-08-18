@@ -12,6 +12,20 @@ import { errorMiddleware } from "./middlewares/error.js";
 
 const app = express();
 dotenv.config({path:"./config/config.env"});
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", process.env.FRONTEND_URL); // Set the allowed origin
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE"); // Set the allowed methods
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization"); // Set allowed headers
+  res.header("Access-Control-Allow-Credentials", "true"); // Allow credentials (like cookies)
+  
+  // Handle preflight requests
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
+  next();
+});
+
 app.use(
     cors({
       origin: [process.env.FRONTEND_URL],
