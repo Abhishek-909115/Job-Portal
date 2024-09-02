@@ -113,6 +113,7 @@ const PostJob = () => {
                   MEVN STACK Development
                 </option>
                 <option value="Data Entry Operator">Data Entry Operator</option>
+                <option value="Other">Other</option>
               </select>
             </div>
             <div className="wrapper">
